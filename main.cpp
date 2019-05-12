@@ -16,7 +16,12 @@ int main(int argc, char *argv[])
     w.show();
 
     DbManager db(path);
-    db.addFilm("Friends with Benefits", 2011, 5, 1);
+    //db.addFilm("Friends with Benefits", 2011, 5, 1);
+    auto films = db.readAll();
+
+    DbManager::Film film;
+    foreach (film, films)
+        qDebug() << film.title;
 
 return a.exec();
 }

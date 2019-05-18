@@ -12,7 +12,7 @@ DbManager::DbManager(const QString &path)
     m_db = QSqlDatabase::addDatabase("QSQLITE");
 
     //create database file if one does not exist
-    if (!QFile::exists("database.db"))
+    if (!QFile::exists(path))
     {
         QFile file("database.db");
         if (!file.open(QIODevice::ReadWrite | QIODevice::Text))

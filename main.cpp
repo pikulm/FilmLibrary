@@ -1,5 +1,5 @@
-#include "mainwindow.h"
 #include "dbmanager.h"
+#include "mainwindow.h"
 
 #include <QApplication>
 #include <QCoreApplication>
@@ -7,11 +7,9 @@
 #include <QFile>
 #include <QFileDevice>
 
-
 static const QString path = "database.db";
 
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;

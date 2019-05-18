@@ -5,14 +5,12 @@
 #include <QString>
 #include <QVector>
 
-class DbManager
-{
+class DbManager {
 public:
     DbManager(const QString& path);
     ~DbManager();
 
-    struct Film
-    {
+    struct Film {
         QString title;
         int year;
         double userRating;

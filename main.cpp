@@ -4,9 +4,11 @@
 #include <QApplication>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QFile>
+#include <QFileDevice>
 
-static const QString path = "/Users/magdalenapikul/Documents/Studia/4 semestr/"
-                            "Programowanie Obiektowe/Projekt/FilmLibrary/databaseFilmLibrary.db";
+
+static const QString path = "database.db";
 
 
 int main(int argc, char *argv[])
@@ -17,11 +19,11 @@ int main(int argc, char *argv[])
 
     DbManager db(path);
     //db.addFilm("Friends with Benefits", 2011, 5, 1);
-    auto films = db.readAll();
+    //auto films = db.readAll();
 
-    DbManager::Film film;
-    foreach (film, films)
-        qDebug() << film.title;
+    //    DbManager::Film film;
+    //    foreach (film, films)
+    //        qDebug() << film.title;
 
-return a.exec();
+    return a.exec();
 }

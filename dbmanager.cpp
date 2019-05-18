@@ -4,10 +4,22 @@
 #include <QSqlError>
 #include <QSqlRecord>
 #include <QDebug>
+#include <QFile>
+
 
 DbManager::DbManager(const QString &path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
+
+    //create database file if one does not exist
+    if (!QFile::exists("database.db"))
+    {
+        QFile file("database.db");
+        if (!file.open(QIODevice::ReadWrite | QIODevice::Text))
+            return;
+        file.close();
+    }
+    //configure & open database connection
     m_db.setDatabaseName(path);
 
     if (!m_db.open())
@@ -18,6 +30,7 @@ DbManager::DbManager(const QString &path)
     {
         qDebug() << "Database: connection ok";
     }
+    createTable();
 }
 
 DbManager::~DbManager()
@@ -31,6 +44,26 @@ DbManager::~DbManager()
 bool DbManager::isOpen() const
 {
     return m_db.isOpen();
+}
+
+bool DbManager::createTable() const
+{
+    bool success = false;
+
+    QSqlQuery query;
+    query.prepare("CREATE TABLE Film (id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT NOT NULL,"
+                  "title      VARCHAR NOT NULL,"
+                  "year       INTEGER NOT NULL,"
+                  "imdbRating DOUBLE,"
+                  "userRating DOUBLE,"
+                  "ifWatched  BOOLEAN)");
+
+    if (!query.exec())
+    {
+        qDebug() << "Couldn't create the table 'Film': one might already exist.";
+        success = false;
+    }
+    return success;
 }
 
 bool DbManager::addFilm(const QString& title, const int &year, const double &userRating, const bool &ifWatched)

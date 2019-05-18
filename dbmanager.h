@@ -23,6 +23,7 @@ public:
     bool isOpen() const;
     bool addFilm(const QString& title, const int& year, const double& userRating, const bool& ifWatched);
     QVector<Film> readAll();
+    bool createTable() const;
 
 private:
     QSqlDatabase m_db;

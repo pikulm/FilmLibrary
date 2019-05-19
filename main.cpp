@@ -1,5 +1,6 @@
 #include "dbmanager.h"
 #include "mainwindow.h"
+#include "omdbmanager.h"
 
 #include <QApplication>
 #include <QCoreApplication>
@@ -22,6 +23,9 @@ int main(int argc, char* argv[])
     DbManager::Film film;
     foreach (film, films)
         qDebug() << film.title;
+
+    //testing OMDbManager
+    OMDbManager b;
 
     return a.exec();
 }

@@ -25,7 +25,8 @@ int main(int argc, char* argv[])
         qDebug() << film.title;
 
     //testing OMDbManager
-    OMDbManager b;
+    OMDbManager omdb;
+    omdb.fetchData("xxx", 2002);
 
     return a.exec();
 }

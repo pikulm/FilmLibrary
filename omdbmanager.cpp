@@ -25,7 +25,9 @@ void OMDbManager::fetchData(QString title, double year)
     QUrlQuery urlQuery("http://www.omdbapi.com/?");
     urlQuery.addQueryItem("apikey", "8aaa2cd7");
     urlQuery.addQueryItem("t", title);
-    urlQuery.addQueryItem("y", QString::number(year));
+    if (year != 0) {
+        urlQuery.addQueryItem("y", QString::number(year));
+    }
     m_networkManager->get(QNetworkRequest(QUrl(urlQuery.toString())));
 }
 

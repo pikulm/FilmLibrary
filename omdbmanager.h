@@ -11,7 +11,7 @@ class OMDbManager : public QObject {
 public:
     OMDbManager();
     ~OMDbManager();
-    void fetchData(QString title, double year);
+    void fetchData(QString title, double year = 0);
 
 public slots:
     void replyFinished(QNetworkReply* reply);

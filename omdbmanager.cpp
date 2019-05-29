@@ -1,5 +1,6 @@
 #include "omdbmanager.h"
 #include <QDebug>
+#include <QJsonDocument>
 #include <QNetworkAccessManager>
 #include <QUrlQuery>
 
@@ -33,7 +34,12 @@ void OMDbManager::fetchData(QString title, double year)
 
 void OMDbManager::replyFinished(QNetworkReply* reply)
 {
-    QString data = static_cast<QString>(reply->readAll());
+    auto replyJson = QJsonDocument::fromJson(reply->readAll());
+    auto isJsonNull = replyJson.isNull();
 
-    qDebug() << data;
+    qDebug() << "JSON from the reply:" << replyJson;
+    qDebug() << "Was JSON improperly parsed:" << isJsonNull;
+    qDebug() << "The title of the movie is:" << replyJson["Title"].toString();
+    qDebug() << "The imdb rating of the movie is:" << replyJson["imdbRating"].toString();
+    qDebug() << "The value of internet movie database rating of the movie is:" << replyJson["Ratings"][0]["Value"].toString();
 }

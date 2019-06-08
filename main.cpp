@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     //testing OMDbManager
     OMDbManager omdb;
-    omdb.fetchData("xxx");
+    OMDbManager::Answear answ = omdb.fetchData("xxx");
 
     return a.exec();
 }

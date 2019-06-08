@@ -11,13 +11,24 @@ class OMDbManager : public QObject {
 public:
     OMDbManager();
     ~OMDbManager();
-    void fetchData(QString title, double year = 0);
+
+    struct Answear {
+        QString title;
+        QString year;
+        QString imdbRating;
+    };
+
+    OMDbManager::Answear fetchData(QString title, double year = 0);
 
 public slots:
     void replyFinished(QNetworkReply* reply);
 
 private:
     QNetworkAccessManager* m_networkManager;
+    bool m_isNotReady;
+    QString m_title;
+    QString m_year;
+    QString m_imdbRating;
 };
 
 #endif // OMDBMANAGER_H

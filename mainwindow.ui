@@ -22,10 +22,13 @@
       </property>
       <widget class="QWidget" name="addFilmPage">
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0" colspan="3">
-         <widget class="QLabel" name="label">
+        <item row="5" column="0" colspan="5">
+         <widget class="QTextBrowser" name="resultText"/>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>&lt;font color=#df0ac9&gt;&lt;h1&gt;Add film to your database&lt;/h1&gt;&lt;/font&gt;</string>
+           <string>&lt;font color=#df0ac9&gt;Want to add it to your database?&lt;/font&gt;</string>
           </property>
           <property name="textFormat">
            <enum>Qt::RichText</enum>
@@ -42,27 +45,75 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLineEdit" name="titleEdit">
-          <property name="placeholderText">
-           <string>Title</string>
+        <item row="0" column="0" colspan="5">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1 style=&quot; margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:xx-large; font-weight:600; color:#df0ac9;&quot;&gt;Add film to your database from OMDb API&lt;/span&gt;&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::RichText</enum>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="2" column="3">
          <widget class="QLineEdit" name="yearEdit">
           <property name="placeholderText">
            <string>Year</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0" colspan="3">
-         <widget class="QTextBrowser" name="resultText"/>
-        </item>
-        <item row="2" column="2">
+        <item row="2" column="4">
          <widget class="QPushButton" name="searchButton">
           <property name="text">
            <string>Search</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QCheckBox" name="ifYesBox">
+          <property name="text">
+           <string>yes</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <widget class="QLineEdit" name="titleEdit">
+          <property name="placeholderText">
+           <string>Title</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>&lt;font color=#df0ac9&gt;Have you watched it?&lt;font&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::RichText</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>&lt;font color=#df0ac9&gt;Rate it:&lt;/font&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" colspan="3">
+         <widget class="QSpinBox" name="ratingBox">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="4">
+         <widget class="QPushButton" name="addButton">
+          <property name="text">
+           <string>Add to database</string>
           </property>
          </widget>
         </item>
@@ -112,8 +163,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>doWhenAddButtonPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>435</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>664</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>doWhenSearchButtonPressed()</slot>
+  <slot>doWhenAddButtonPressed()</slot>
  </slots>
 </ui>

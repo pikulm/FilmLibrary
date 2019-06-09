@@ -8,25 +8,19 @@
 #include <QFile>
 #include <QFileDevice>
 
-static const QString path = "database.db";
-
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
 
-    DbManager db(path);
+    //DbManager db(path);
     //db.addFilm("Friends with Benefits", 2011, 5, 1);
-    auto films = db.readAll();
+    //auto films = db.readAll();
 
-    DbManager::Film film;
-    foreach (film, films)
-        qDebug() << film.title;
-
-    //testing OMDbManager
-    OMDbManager omdb;
-    OMDbManager::Answear answ = omdb.fetchData("xxx");
+    //    DbManager::Film film;
+    //    foreach (film, films)
+    //        qDebug() << film.title;
 
     return a.exec();
 }

@@ -22,6 +22,15 @@ private:
     DbManager db;
     OMDbManager::Answear m_answ;
 
+    enum headers {
+        ID,
+        TITLE,
+        YEAR,
+        IMDBRATING,
+        USERRATING,
+        IFWATCHED
+    };
+
 private slots:
     void doWhenSearchButtonPressed();
     void doWhenAddButtonPressed();

@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     ui->searchButton->setStyleSheet("QPushButton {color: #df0ac9}");
     ui->addButton->setStyleSheet("QPushButton {color: #df0ac9}");
+    ui->addSelfButton->setStyleSheet("QPushButton {color: #df0ac9}");
 }
 
 MainWindow::~MainWindow()
@@ -64,4 +65,20 @@ void MainWindow::doWhenAddButtonPressed()
     }
 
     //TODO: reading imdbRating from search result & adding it to db.addFilm function
+}
+
+void MainWindow::doWhenAddSelfButtonPressed()
+{
+    QString title = ui->selfTitleEdit->text();
+    int year = ui->selfYearEdit->text().toInt();
+    double userRating = ui->selfRatingBox->value();
+    bool ifWatched = ui->selfYesBox->isChecked();
+
+    bool isSuccessfullyAdded = this->db.addFilm(title, year, userRating, ifWatched);
+
+    if (isSuccessfullyAdded) {
+        this->ui->statusBar->showMessage("Film successfully added", 3000);
+    } else {
+        this->ui->statusBar->showMessage("Film not added", 3000);
+    }
 }

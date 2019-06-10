@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QComboBox>
 #include <QDebug>
 #include <QPixmap>
+#include <QStackedWidget>
 
 static const QString path = "database.db";
 
@@ -16,6 +18,13 @@ MainWindow::MainWindow(QWidget* parent)
     ui->searchButton->setStyleSheet("QPushButton {color: #df0ac9}");
     ui->addButton->setStyleSheet("QPushButton {color: #df0ac9}");
     ui->addSelfButton->setStyleSheet("QPushButton {color: #df0ac9}");
+
+    ui->comboBox->addItem("Add film from OMDb");
+    ui->comboBox->addItem("Add own film");
+    ui->comboBox->addItem("View all");
+
+    connect(ui->comboBox, QOverload<int>::of(&QComboBox::activated),
+        ui->stackedWidget, &QStackedWidget::setCurrentIndex);
 }
 
 MainWindow::~MainWindow()

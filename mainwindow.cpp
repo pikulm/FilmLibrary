@@ -6,6 +6,7 @@
 #include <QPixmap>
 #include <QStackedWidget>
 #include <QTableWidget>
+#include <Qt>
 
 static const QString path = "database.db";
 
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget* parent)
     foreach (film, filmVector)
         qDebug() << film.title;
 
+    //
     auto vectorLenght = filmVector.size();
     qDebug() << vectorLenght;
 
@@ -51,6 +53,7 @@ MainWindow::MainWindow(QWidget* parent)
 
         rowId += 1;
     }
+    ui->tableWidget->setSortingEnabled(true);
 }
 
 MainWindow::~MainWindow()
@@ -116,4 +119,32 @@ void MainWindow::doWhenAddSelfButtonPressed()
     } else {
         this->ui->statusBar->showMessage("Film not added", 3000);
     }
+}
+
+void MainWindow::doWhenChangePages()
+{
+    auto filmVector = db.readAll();
+
+    DbManager::Film film;
+    foreach (film, filmVector)
+        qDebug() << film.title;
+
+    //
+    auto vectorLenght = filmVector.size();
+    qDebug() << vectorLenght;
+
+    ui->tableWidget->setRowCount(vectorLenght);
+
+    int rowId = 0;
+    foreach (film, filmVector) {
+        ui->tableWidget->setItem(rowId, ID, new QTableWidgetItem(QString::number(rowId + 1)));
+        ui->tableWidget->setItem(rowId, TITLE, new QTableWidgetItem(film.title));
+        ui->tableWidget->setItem(rowId, YEAR, new QTableWidgetItem(QString::number(film.year)));
+        ui->tableWidget->setItem(rowId, IMDBRATING, new QTableWidgetItem(QString::number(film.imdbRating)));
+        ui->tableWidget->setItem(rowId, USERRATING, new QTableWidgetItem(QString::number(film.userRating)));
+        ui->tableWidget->setItem(rowId, IFWATCHED, new QTableWidgetItem(QString::number(film.ifWatched)));
+
+        rowId += 1;
+    }
+    ui->tableWidget->setSortingEnabled(true);
 }

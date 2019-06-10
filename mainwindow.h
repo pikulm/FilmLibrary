@@ -35,6 +35,7 @@ private slots:
     void doWhenSearchButtonPressed();
     void doWhenAddButtonPressed();
     void doWhenAddSelfButtonPressed();
+    void doWhenChangePages();
 };
 
 #endif // MAINWINDOW_H
